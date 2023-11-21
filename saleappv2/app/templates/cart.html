@@ -1,0 +1,39 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Gio hang{% endblock %}
+
+{% block content %}
+{% if 'cart' in session %}
+    <h1 class="text-center text-info">Gio Hang</h1>
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Ten san pham</th>
+            <th>Don gia</th>
+            <th>So luong</th>
+            <th></th>
+        </tr>
+         {% for c in session['cart'].values() %}
+        <tr>
+            <td>{{c.id}}</td>
+            <td>{{c.name}}</td>
+            <td>{{c.price}} VND</td>
+            <td>
+                <input type ="number" value="{{c.quantity}}" class ="form-control">
+            </td>
+            <td>
+                <button class="btn btn-danger">&times;</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+<div class="alert alert-info">
+    <h3>Tong tien: {{cart.total_amount}}VND</h3>
+     <h3>Tong san pham: {{cart.total_quantity}}</h3>
+</div>
+
+<div>
+    <button class="btn btn-success">Thanh toan</button>
+</div>
+{% endif %}
+{% endblock %}
